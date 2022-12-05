@@ -4,7 +4,7 @@
 
 int main() {
 
-    parse myParser("2021");
+    parse myParser("2021", 8);
 
     /*
     myParser.getSchoolRankVector();
