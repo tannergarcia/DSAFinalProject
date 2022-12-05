@@ -8,7 +8,6 @@ class parse {
 private:
     std::string year;
     struct dataObject {
-        //std::string institution;
         int group;
         std::string test;
         int proficient;
@@ -20,10 +19,10 @@ private:
 
 public:
     parse(std::string _year);
-    std::vector<std::pair<std::string, int>> getSchoolByGroup(int group);
+    std::vector<std::pair<std::string, int>> getSchoolByGroup(int group); // returns the proficiency of a group at every school
     std::vector<std::pair<std::string, int>> getSchoolRankVector(); // returns vector of school, average proficiency
     std::vector<std::pair<int, int>> getGroupVector(std::string &school); // returns all groups at a school (first) and their average scores (second)
-    std::unordered_map<int, std::string> groupConvert;
+    std::unordered_map<int, std::string> groupConvert; // use to convert an integer group number to a string
 };
 
 
