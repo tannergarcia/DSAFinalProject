@@ -165,4 +165,3 @@ bool parse::schoolLookup(std::string &school) {
     if (location != dataSet.end()) return true;
     return false;
 }
-
