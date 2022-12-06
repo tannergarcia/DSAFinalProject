@@ -71,11 +71,11 @@ int display::groupSelect(const std::unordered_map<int, std::string> &groupConver
 
 int display::itemNumSelect() {
     int items = 0;
-    cout << "Enter max number of items to display: ";
+    cout << "Enter max number of items to display: \n";
     cin >> items;
 
     while (items < 1) {
-        cout << "Invalid selection\nTry again: ";
+        cout << "Invalid selection\nTry again: \n";
         cin >> items;
     }
     return items;
@@ -89,7 +89,7 @@ void display::schoolRank(std::vector<std::pair<std::string, int>> &vec) {
     long long int shellTime = shellSort(vec);
 
     // then merge sort
-    //long long int mergeTime = mergeSort(copy);
+    long long int mergeTime = mergeSort(copy, 0, copy.size() - 1);
 
     cout << "\n\nSorted Order: \n";
     cout << "School Name      Percent Proficient\n\n";
@@ -99,14 +99,12 @@ void display::schoolRank(std::vector<std::pair<std::string, int>> &vec) {
     }
 
     cout << "Shell sort took " << shellTime << " microseconds\n";
-    /*
-    cout << "Merge sort took " << mergeTime << "microseconds\n";
 
-    if (shellTime > mergeTime) {
+    cout << "Merge sort took " << mergeTime << " microseconds\n";
+    if (shellTime < mergeTime) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
-     */
 }
 
 void display::groupRank(vector<std::pair<std::string, int>> &vec) {
@@ -117,7 +115,7 @@ void display::groupRank(vector<std::pair<std::string, int>> &vec) {
     long long int shellTime = shellSort(vec);
 
     // then merge sort
-    //long long int mergeTime = mergeSort(copy);
+    long long int mergeTime = mergeSort(copy, 0, copy.size() - 1);
 
     cout << "\n\nSorted Order: \n";
     cout << "School Name      Percent Proficient\n\n";
@@ -127,14 +125,12 @@ void display::groupRank(vector<std::pair<std::string, int>> &vec) {
     }
 
     cout << "Shell sort took " << shellTime << " microseconds\n";
-    /*
-    cout << "Merge sort took " << mergeTime << "microseconds\n";
 
-    if (shellTime > mergeTime) {
+    cout << "Merge sort took " << mergeTime << " microseconds\n";
+    if (shellTime < mergeTime) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
-     */
 }
 
 void display::schoolGroups(std::vector<std::pair<int, int>> &vec,
@@ -146,7 +142,7 @@ void display::schoolGroups(std::vector<std::pair<int, int>> &vec,
     long long int shellTime = shellSort(vec);
 
     // then merge sort
-    //long long int mergeTime = mergeSort(copy);
+    long long int mergeTime = mergeSort(copy, 0, copy.size() - 1);
 
     cout << "\n\nSorted Order: \n";
     cout << "Group Name      Percent Proficient\n\n";
@@ -156,14 +152,12 @@ void display::schoolGroups(std::vector<std::pair<int, int>> &vec,
     }
 
     cout << "Shell sort took " << shellTime << " microseconds\n";
-    /*
-    cout << "Merge sort took " << mergeTime << "microseconds\n";
 
-    if (shellTime > mergeTime) {
+    cout << "Merge sort took " << mergeTime << " microseconds\n";
+    if (shellTime < mergeTime) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
-     */
 
 
 }
