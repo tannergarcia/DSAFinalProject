@@ -101,7 +101,7 @@ void display::schoolRank(std::vector<std::pair<std::string, int>> &vec) {
     cout << "Shell sort took " << shellTime << " microseconds\n";
 
     cout << "Merge sort took " << mergeTime << " microseconds\n";
-    if (shellTime > mergeTime) {
+    if (shellTime < mergeTime) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
@@ -127,7 +127,7 @@ void display::groupRank(vector<std::pair<std::string, int>> &vec) {
     cout << "Shell sort took " << shellTime << " microseconds\n";
 
     cout << "Merge sort took " << mergeTime << " microseconds\n";
-    if (shellTime > mergeTime) {
+    if (shellTime < mergeTime) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
@@ -154,7 +154,7 @@ void display::schoolGroups(std::vector<std::pair<int, int>> &vec,
     cout << "Shell sort took " << shellTime << " microseconds\n";
 
     cout << "Merge sort took " << mergeTime << " microseconds\n";
-    if (shellTime > mergeTime) {
+    if (shellTime < mergeTime) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
