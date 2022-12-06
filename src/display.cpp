@@ -105,6 +105,9 @@ void display::schoolRank(std::vector<std::pair<std::string, int>> &vec) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
+
+
+    std::system("PAUSE");
 }
 
 void display::groupRank(vector<std::pair<std::string, int>> &vec) {
@@ -131,6 +134,8 @@ void display::groupRank(vector<std::pair<std::string, int>> &vec) {
         cout << "Shell ";
     } else cout << "Merge ";
     cout << "sort performed faster\n";
+
+    std::system("PAUSE");
 }
 
 void display::schoolGroups(std::vector<std::pair<int, int>> &vec,
@@ -159,5 +164,6 @@ void display::schoolGroups(std::vector<std::pair<int, int>> &vec,
     } else cout << "Merge ";
     cout << "sort performed faster\n";
 
+    std::system("PAUSE");
 
 }
