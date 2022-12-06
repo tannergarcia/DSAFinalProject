@@ -4,40 +4,9 @@
 #include <iostream>
 
 
-parse::parse(std::string _year, int grade) {
+parse::parse(std::string _year, const std::unordered_map<std::string, int> &gradeConversion, int grade) {
     year = _year;
-    // define all conversions for groups
-    groupConvert[0] = "All Students";
-    groupConvert[1] = "General Education Students";
-    groupConvert[2] = "Students with Disabilities";
-    groupConvert[3] = "Students with Disabilities";
-    groupConvert[4] = "Asian or Native hawaiian/Other Pacific Islander";
-    groupConvert[5] = "Black or African American";
-    groupConvert[6] = "Hispanic or Latino";
-    groupConvert[7] = "White";
-    groupConvert[8] = "Multiracial";
-    groupConvert[9] = "Small Group";
-    groupConvert[10] = "Female";
-    groupConvert[11] = "Male";
-    groupConvert[12] = "English Language Learner";
-    groupConvert[13] = "Non-English Language Leaner";
-    groupConvert[14] = "Economically Disadvantaged";
-    groupConvert[15] = "Not Economically Disadvantaged";
-    groupConvert[16] = "Migrant";
-    groupConvert[17] = "Not Migrant";
-    groupConvert[18] = "Homeless";
-    groupConvert[19] = "Not Homeless";
-    groupConvert[20] = "In Foster Care";
-    groupConvert[21] = "Not in Foster Care";
-    groupConvert[22] = "Parent in Armed Forces";
-    groupConvert[23] = "Parent not in Armed Forces";
-    // define conversions for grades
-    gradeConvert["MATH3"] = 3;
-    gradeConvert["MATH4"] = 4;
-    gradeConvert["MATH5"] = 5;
-    gradeConvert["MATH6"] = 6;
-    gradeConvert["MATH7"] = 7;
-    gradeConvert["MATH8"] = 8;
+
     std::fstream fin;
 
     fin.open("../csvEMMATH_trunc.csv", std::ios::in); // open file, hardcoded position as of right now
@@ -57,7 +26,9 @@ parse::parse(std::string _year, int grade) {
         //if (name == "AllPublicSchools") continue; // ignore these
         std::getline(stream, assessment, ',');
         if (grade != 0) {
-            if (gradeConvert[assessment] != grade) continue; // only get values for grade if specified
+            auto find = gradeConversion.find(assessment);
+            if (find != gradeConversion.end() && find->second != grade)
+                continue; // only get values for grade if specified
         }
         std::getline(stream, group, ',');
         std::getline(stream, proficient, ',');
@@ -66,7 +37,6 @@ parse::parse(std::string _year, int grade) {
         int profInt = std::stoi(proficient);
 
         insert(groupInt, name, assessment, profInt);
-
     }
 
 
@@ -92,7 +62,7 @@ void parse::insert(int &subgroup, std::string &institution, std::string &assessm
 
         dataSet.insert(std::make_pair(institution, myPair));
     }
-
+    totalItems++;
 }
 
 std::vector<std::pair<std::string, int>> parse::getSchoolRankVector() {
@@ -181,14 +151,18 @@ std::vector<std::pair<std::string, int>> parse::getSchoolByGroup(int group) {
         location->second = (location->second + totalVal)/count;
     }
 
-    for(auto &itr: multimap) { // looping through again just to be safe so not accessing bad memory
-        myVec.emplace_back(itr.first,itr.second);
+    for (auto &itr: multimap) { // looping through again just to be safe so not accessing bad memory
+        myVec.emplace_back(itr.first, itr.second);
         //std::cout << "Group: " << groupConvert[itr.first] << "  Score: " << itr.second << "\n";
     }
 
 
-
-
     return myVec;
+}
+
+bool parse::schoolLookup(std::string &school) {
+    auto location = dataSet.find(school);
+    if (location != dataSet.end()) return true;
+    return false;
 }
 
